@@ -40,9 +40,11 @@ def storage():
         return "\n\nYou made a DELETE request. index "+str(request.data["index"])+" deleted successfully.\n\n"
 
 
-@app.route('/initdb', methods=['GET'])
+@app.route('/createdatabase', methods=['GET'])
 def initDB():
-    dbInterface.execute("CREATE DATABASE testDB")
+    databaseName = request.data
+    dbInterface.execute("CREATE DATABASE "+databaseName)
+    return "DATABASE "+databaseName+" created successfully"
 
 
 if __name__ == '__main__':
