@@ -12,7 +12,7 @@ auth = HTTPBasicAuth()
 temporaryStorage = []
 
 accounts = {
-    "otboss": "286755fad04869ca523320acce0dc6a4"
+    "otboss": "password"
 }
 
 @auth.get_password
