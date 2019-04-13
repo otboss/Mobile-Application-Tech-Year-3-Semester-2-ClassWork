@@ -1,8 +1,12 @@
 #!flask/bin/python
 from flask import abort
 from flask import Flask, jsonify, request
+from flask_httpauth import HTTPBasicAuth
+from flask import Response
 
 app = Flask(__name__)
+
+auth = HTTPBasicAuth()
 
 tasks = [
 	{
@@ -19,11 +23,39 @@ tasks = [
 	}
 ]
 
+accounts = {
+    "otboss": "password"
+}
+
+@auth.get_password
+def get_password(username):
+    try:
+        return accounts[username]
+    except:
+        return None
+
+@auth.error_handler
+def unauthorized():
+    return Response("{'error':'Unauthorized Access'}", status=403, mimetype='application/json')
+
+@auth.verify_password
+def login(username, password):
+	try:
+		data = request.args
+		if(data["username"] in accounts):
+			if(accounts[data["username"]] == data["password"]):
+				return True
+		return False
+	except:
+		return False
+
 @app.route('/todo/api/v1.0/tasks/', methods=['GET'])
+@auth.login_required
 def get_tasks():
 	return jsonify({'tasks': tasks})
 
 @app.route('/todo/api/v1.0/tasks/<int:task_id>', methods=['GET'])
+@auth.login_required
 def get_task(task_id):
 	result = [];
 	for task in tasks:
@@ -35,6 +67,7 @@ def get_task(task_id):
 	return jsonify({'task': result[0]})
 
 @app.route('/todo/api/v1.0/tasks/newtask', methods=['POST'])
+@auth.login_required
 def new_task():
 	newtask = dict(request.form)
 	try:
@@ -49,6 +82,7 @@ def new_task():
 		return "Error while adding task"
 		
 @app.route('/todo/api/v1.0/tasks/updatetask', methods=['PUT'])
+@auth.login_required
 def update_task():
 	task_to_update = dict(request.form)
 	try:
@@ -63,6 +97,7 @@ def update_task():
 		return "Error while adding task"	
 		
 @app.route('/todo/api/v1.0/tasks/toggledone', methods=['PUT'])
+@auth.login_required
 def toggle_task_done():
 	task_to_update = dict(request.form)
 	try:
@@ -79,6 +114,7 @@ def toggle_task_done():
 		return "Error while adding task"
 
 @app.route('/todo/api/v1.0/tasks/removetask', methods=['DELETE'])
+@auth.login_required
 def remove_task():
 	task_id = dict(request.form)
 	try:
@@ -91,8 +127,13 @@ def remove_task():
 	except:
 		return "Error while adding task"
 
+@auth.error_handler
+def unauthorized():
+    response = jsonify({'Error 403':'Forbidden'})
+    return response, 403
+
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run(debug=False, ssl_context=('cert.pem', 'key.pem'))
 
 
 	
