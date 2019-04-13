@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <style>
+            body{
+                margin: 0;
+            }
+            .fill{
+                float: left;
+                width: 100%;
+            }
+            span{
+                font-family: arial;
+            }
+            header{
+                height: 80px;
+            }
+            .theme{
+                background-color: deepskyblue;
+            }
+            .formCell{
+                text-align: center;
+                padding: 10px 0;
+            }
+            .formInputField{
+                width: 100%; 
+                max-width: 700px; 
+                font-size: 50px; 
+                background-color: white; 
+                border: 1px solid lightgray; 
+                padding: 3px 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="fill theme">
+            <table style="height: 100%;">
+                <tr>
+                    <td style="padding: 0 0 0 20px;">
+                        <span style="color: white; font-size: 28px;">Login Form</span>
+                    </td>
+                </tr>
+            </table>
+        </header>
+        <section class="fill" style="height: calc(100vh - 80px);">
+            <table class="fill" style="height: 100%; padding: 0 0 30px 0;">
+                <tr>
+                    <td>
+                        <table class="fill">
+                            <tr>
+                                <td class="formCell">
+                                    <input placeholder="Username" class="formInputField">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formCell">
+                                    <input placeholder="Password" class="formInputField">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="formCell">
+                                    <div class="theme" style="height: 50px; cursor: pointer; width: 100%; max-width: 700px; display: inline-block;">
+                                        <div class="fill" style="margin: 15px 0 0 0;">
+                                            <span style="color: white;">submit</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </section>
+    </body>
+</html>
