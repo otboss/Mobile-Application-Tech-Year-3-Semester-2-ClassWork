@@ -1,7 +1,8 @@
 #!/bin/bash
 
 printf "Calabash installer started..\n";
-printf "Run this script using the command 'source ./calabash-installer.sh'";
+printf "Run this script using the command 'source ./calabash-installer.sh'\n";
+printf "IT WILL FAIL IF UNSOURCED!";
 sleep 4;
 sudo apt-get update;
 sudo add-apt-repository ppa:openjdk-r/ppa;
@@ -34,6 +35,7 @@ then
     unzip android-studio-ide-182.5314842-linux.zip;
     printf "Starting Android Studio.. Please Setup the SDK and Quit when finished";
     sleep 2;
+    chmod +x ./android-studio/bin/studio.sh;
     ./android-studio/bin/studio.sh;
 fi
 export ANDROID_HOME='/home/'$USER'/Android/Sdk';
