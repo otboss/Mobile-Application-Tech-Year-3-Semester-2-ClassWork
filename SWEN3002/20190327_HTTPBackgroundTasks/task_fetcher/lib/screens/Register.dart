@@ -10,11 +10,10 @@ class Register extends StatefulWidget {
   _RegisterState createState() => _RegisterState();
 }
 
-TextEditingController _usernameField = TextEditingController();
-TextEditingController _passwordField = TextEditingController();
-TextEditingController _confirmPasswordField = TextEditingController();
-
 class _RegisterState extends State<StatefulWidget> {
+  TextEditingController _usernameField = TextEditingController();
+  TextEditingController _passwordField = TextEditingController();
+  TextEditingController _confirmPasswordField = TextEditingController();  
   FocusNode _incorrectConfirmationPasswordFocus;
   
   @override
