@@ -10,10 +10,12 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
-TextEditingController _usernameField = TextEditingController();
-TextEditingController _passwordField = TextEditingController();
+
 
 class _LoginState extends State<StatefulWidget> {
+  TextEditingController _usernameField = TextEditingController();
+  TextEditingController _passwordField = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
     dio.onHttpClientCreate = (HttpClient client) {
