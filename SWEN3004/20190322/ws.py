@@ -49,22 +49,49 @@ def login(username, password):
 	except:
 		return False
 
+@app.route('/register/', methods=['GET'])
+def new_user():
+	username = dict(request.args)["username"][0];
+	password = dict(request.args)["password"][0];
+	try:
+		accounts[username];
+		return jsonify({'success': False})
+	except:
+		accounts[username] = password;
+		return jsonify({'success': True})		
+
 @app.route('/todo/api/v1.0/tasks/', methods=['GET'])
 @auth.login_required
-def get_tasks():
-	return jsonify({'tasks': tasks})
-
-@app.route('/todo/api/v1.0/tasks/<int:task_id>', methods=['GET'])
-@auth.login_required
-def get_task(task_id):
+def get_task():
+	task_id = None;
+	try:
+		task_id = dict(request.args)["task_id"][0];
+	except:
+		return jsonify({'Error 503':'Missing Parameter task_id'}), 503
+	isTaskIdInt = True
+	try:
+		int(task_id)
+	except:
+		isTaskIdInt = False
 	result = [];
 	for task in tasks:
-		if task["id"] == str(task_id):
-			result.append(task)
-			break
+		if isTaskIdInt:
+			if task["id"] == str(task_id):
+				result.append(task)
+				break
+		else:
+			try:
+				if task["title"].lower().index(task_id.lower()) >= 0:
+					#Substring found
+					result.append(task);
+			except ValueError as e:
+				#Substring not found
+				continue;
 	if len(result) == 0:
-		abort(404)
-	return jsonify({'task': result[0]})
+		return jsonify({})
+	return jsonify({'task': result})
+
+
 
 @app.route('/todo/api/v1.0/tasks/newtask', methods=['POST'])
 @auth.login_required
@@ -133,7 +160,7 @@ def unauthorized():
     return response, 403
 
 if __name__ == '__main__':
-	app.run(debug=False, ssl_context=('cert.pem', 'key.pem'))
+	app.run(debug=False, ssl_context=('cert.pem', 'key.pem'), host='0.0.0.0')
 
 
 	

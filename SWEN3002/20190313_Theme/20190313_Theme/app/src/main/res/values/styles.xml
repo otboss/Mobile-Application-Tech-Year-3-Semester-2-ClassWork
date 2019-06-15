@@ -10,9 +10,35 @@
         <item name="android:windowBackground">@color/soothing_blue</item>
         <item name="buttonStyle">@style/BeatBoxButton</item>
     </style>
-    
+
+
+    <!-- Light application theme. -->
+    <style name="LightAppTheme" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/gray</item>
+
+        <item name="android:windowBackground">@color/white</item>
+        <item name="buttonStyle">@style/BeatBoxButtonLight</item>
+    </style>
+
+    <!-- Dark application theme. -->
+    <style name="DarkAppTheme" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/dark_red</item>
+        <item name="colorPrimaryDark">@color/dark_red</item>
+        <item name="colorAccent">@color/gray</item>
+
+        <item name="android:windowBackground">@color/black</item>
+        <item name="buttonStyle">@style/BeatBoxButtonDark</item>
+    </style>
+
     <style name="BeatBoxButton" parent="Widget.AppCompat.Button">
         <item name="android:background">@color/dark_blue</item>
     </style>
-
+    <style name="BeatBoxButtonDark" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/black</item>
+    </style>
+    <style name="BeatBoxButtonLight" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/gray</item>
+    </style>
 </resources>

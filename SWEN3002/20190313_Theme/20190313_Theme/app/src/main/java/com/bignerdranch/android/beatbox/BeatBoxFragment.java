@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -28,9 +30,18 @@ public class BeatBoxFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        
+
         mBeatBox = new BeatBox(getActivity());
     }
+
+    /*
+    * Displays the menu icon in the app bar
+    *
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflator){
+        inflator.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflator);
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

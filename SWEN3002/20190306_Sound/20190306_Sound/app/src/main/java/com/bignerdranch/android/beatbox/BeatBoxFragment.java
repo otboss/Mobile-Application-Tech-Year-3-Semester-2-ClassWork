@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
 
 import com.bignerdranch.android.beatbox.databinding.FragmentBeatBoxBinding;
 import com.bignerdranch.android.beatbox.databinding.ListItemSoundBinding;
@@ -28,16 +29,19 @@ public class BeatBoxFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        
         mBeatBox = new BeatBox(getActivity());
     }
 
+
+    /*
+    * PLACES THE RECYCLER VIEW ON THE SCREEN
+    * WHICH WILL CONTAIN THE SOUND FRAGMENTS
+    * */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         FragmentBeatBoxBinding binding = DataBindingUtil
                 .inflate(inflater, R.layout.fragment_beat_box, container, false);
-
         binding.recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         binding.recyclerView.setAdapter(new SoundAdapter(mBeatBox.getSounds()));
 
@@ -79,6 +83,11 @@ public class BeatBoxFragment extends Fragment {
                     .inflate(inflater, R.layout.list_item_sound, parent, false);
             return new SoundHolder(binding);
         }
+
+        /*
+        public void insertSeekBar(ViewGroup parent, int viewType) {
+            SeekBar bar = R.layout.seekbar_layout;
+        }*/
 
         @Override
         public void onBindViewHolder(SoundHolder holder, int position) {

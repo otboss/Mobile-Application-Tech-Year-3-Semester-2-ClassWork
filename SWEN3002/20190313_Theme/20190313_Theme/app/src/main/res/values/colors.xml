@@ -7,6 +7,8 @@
     <color name="red">#F44336</color>
     <color name="dark_red">#C3352B</color>
     <color name="gray">#607D8B</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
     <color name="soothing_blue">#0083BF</color>
     <color name="dark_blue">#005A8A</color>
 </resources>
