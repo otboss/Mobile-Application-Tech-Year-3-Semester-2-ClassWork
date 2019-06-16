@@ -1,0 +1,113 @@
+<!--
+  Made By: Ottor
+  Date: June 16, 2019
+  Responsive login form-->
+<html>
+  <head>
+      <title>Task Fetcher - Sign In</title>
+    <style type="text/css">
+      body{
+        margin: 0;
+      }
+      .theme{
+        background-color: darkcyan;
+      }
+      .fill{
+        width: 100%;
+        float: left;
+      }
+      span{
+        font-family: arial;
+      }
+      #registration_form_table td{
+        text-align: center;
+        padding: 10px 0;
+      }
+      #registration_form_table td input{
+        background-color: white;
+        border: 1px solid grey;
+        color: black;
+        padding: 5px 7px;
+        font-size: 28px;
+        width: 80%;
+        max-width: 500px;
+      }
+
+      .regFormElement{
+        display: inline-block;
+        color: white;
+        padding: 5px 7px;
+        font-size: 28px;
+        width: 80%;
+        max-width: 486px;  
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="fill theme" style="height: 90px;">
+      <table class="fill" style="height: 100%;">
+        <tr>
+          <td>
+            <span style="color: white; font-size: 23px; padding: 0 0 0 10px;">Login</span>
+          </td>
+        </tr>
+      </table>
+    </header>
+    <section class="fill">
+      <form id="registration_form">
+        <table class="fill" style="height: calc(100vh - 90px);">
+            <tr>
+              <td>
+                <table id="registration_form_table" class="fill">
+                  <tr>
+                    <td>
+                      <input id="username_field" placeholder="username" type="text">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input id="password_field" placeholder="password" type="password">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="theme regFormElement" onclick="formSubmission()">
+                        <span>Sign In</span>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+      </form>
+    </section>
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script></script>
+    <script>
+      const formSubmission = function(){
+        console.log("Signing In..");
+        $.ajax({
+          "type":"GET",
+          "url":"https://127.0.0.1:5000/todo/api/v1.0/tasks/",
+          "data":{
+            "username": $("#username_field").val(),
+            "password": $("#password_field").val(),
+            "task_id": ""
+          },
+          "success": function(response){
+            console.log(response);
+            if(typeof(response["task"]) != "undefined"){
+              console.log("Login Successful");
+              alert("Login Successful");
+            }
+          },
+          "error": function(x, y, z){
+            console.log([x,y,z]);
+            alert("Invalid Credentials");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

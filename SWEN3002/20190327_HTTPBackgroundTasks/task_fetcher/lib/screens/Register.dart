@@ -157,7 +157,7 @@ class _RegisterState extends State<StatefulWidget> {
                   dynamic registrationSuccessful;
                   try {
                     if(_passwordField.text == _confirmPasswordField.text){
-                      registrationResponse = await dio.get(
+                      registrationResponse = await dio.post(
                         serverIp + ServerAPI.register,
                         data: new LoginSession(
                           username: _usernameField.text,

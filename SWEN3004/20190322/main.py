@@ -3,8 +3,12 @@ from flask import abort
 from flask import Flask, jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from flask import Response
+from sqlalchemy import create_engine
+from config import engine, usersTable, tasksTable
 
 app = Flask(__name__)
+
+#engine = create_engine('sqlite:///:memory:', echo=True)
 
 auth = HTTPBasicAuth()
 
@@ -49,10 +53,10 @@ def login(username, password):
 	except:
 		return False
 
-@app.route('/register/', methods=['GET'])
+@app.route('/register/', methods=['POST'])
 def new_user():
-	username = dict(request.args)["username"][0];
-	password = dict(request.args)["password"][0];
+	username = dict(request.form)["username"][0];
+	password = dict(request.form)["password"][0];
 	try:
 		accounts[username];
 		return jsonify({'success': False})
