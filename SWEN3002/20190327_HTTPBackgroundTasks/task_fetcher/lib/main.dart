@@ -55,6 +55,14 @@ Future<bool> toastMessageBottomShort(String message, BuildContext context) async
   return true;
 }
 
+///The route mapper for the application. Defines all the app's
+///navigation routes in one place
+abstract class RouteMapper{
+  static String home = "/home";
+  static String login = "/login";
+  static String register = "/register";
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -66,18 +74,10 @@ class MyApp extends StatelessWidget {
       ),
       home: Home(),
       routes: {
-        "/home": (BuildContext context) => Home(),
-        "/login": (BuildContext context) => Login(),
-        "/register": (BuildContext context) => Register(),
+        RouteMapper.home: (BuildContext context) => Home(),
+        RouteMapper.login: (BuildContext context) => Login(),
+        RouteMapper.register: (BuildContext context) => Register(),
       },
     );
   }
-}
-
-///The route mapper for the application. Defines all the app's
-///navigation routes in one place
-abstract class RouteMapper{
-  static String home = "/home";
-  static String login = "/login";
-  static String register = "/register";
 }

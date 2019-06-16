@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hi, {{ current_user.username }}!</h1>
+    <div style="border: 1px solid black; width: 150px; height: 150px;">
+        <img id="profileImageDisplay" style="width: 100%; height: 100%;" src="{{ posts.profile_pic }}">
+    </div>    
+    {% for post in posts.body %}
+    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}
+{% endblock %}
