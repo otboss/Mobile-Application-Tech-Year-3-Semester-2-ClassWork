@@ -1,7 +1,8 @@
 from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData, ForeignKey
+from sqlalchemy.ext.declarative import declarative_base
+Base = declarative_base()
 
-engine = create_engine('mysql+pymysql://otto:otto@localhost/', echo=True)
-
+engine = create_engine("mysql://user:@localhost/task_fetcher",echo = True)
 metadata = MetaData()
 
 usersTable = Table("users", metadata,
