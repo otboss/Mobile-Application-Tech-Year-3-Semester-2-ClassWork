@@ -77,20 +77,22 @@ def toggle_task_done():
 					return "Task with id#: "+task_to_update["id"]+" changed to done\n"
 		return "no changes made"
 	except:
-		return "Error while adding task"
+		return "Error while toggling task done"
 
 @app.route('/todo/api/v1.0/tasks/removetask', methods=['DELETE'])
 def remove_task():
 	task_id = dict(request.form)
+	tid = None
 	try:
 		task_id["id"] = task_id["id"][0]
 		for task_index in range(len(tasks)):
 			if tasks[task_index]["id"] == task_id["id"]:
-				tasks.pop(int(task_id["id"]))
-				return "Task with id#: "+task_to_update["id"]+" removed successfully\n"
+				tid = task_id["id"]
+				tasks.pop(int(task_id["id"])-1)
+				return "Task with id#: "+tid+" removed successfully\n"
 		return "no changes made"
 	except:
-		return "Error while adding task"
+		return "Error while removing task"
 
 if __name__ == '__main__':
 	app.run(debug=True)
