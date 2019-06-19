@@ -60,7 +60,7 @@ def update_task():
 				return "Task with id#: "+task_to_update["id"]+" updated successfully\n"
 		return "no changes made"
 	except:
-		return "Error while adding task"	
+		return "Error while updating task"	
 		
 @app.route('/todo/api/v1.0/tasks/toggledone', methods=['PUT'])
 def toggle_task_done():
@@ -71,9 +71,10 @@ def toggle_task_done():
 			if tasks[task_index]["id"] == task_to_update["id"]:
 				if bool(tasks[task_index]["done"]):
 					tasks[task_index]["done"] = False
+					return "Task with id#: "+task_to_update["id"]+" changed to undone\n"
 				else:
 					tasks[task_index]["done"] = True
-				return "Task with id#: "+task_to_update["id"]+" changed to done\n"
+					return "Task with id#: "+task_to_update["id"]+" changed to done\n"
 		return "no changes made"
 	except:
 		return "Error while adding task"
