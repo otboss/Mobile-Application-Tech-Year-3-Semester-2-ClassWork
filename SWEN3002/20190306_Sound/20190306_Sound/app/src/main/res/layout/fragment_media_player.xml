@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="365dp"
+        android:layout_height="211dp"
+        android:layout_margin="25dp"
+        android:layout_centerHorizontal="true"/>
+
+    <FrameLayout
+        android:id="@+id/videoViewWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/videoView" >
+    </FrameLayout>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/videoViewWrapper"
+        android:layout_alignEnd="@+id/videoViewWrapper"
+        android:layout_below="@+id/videoViewWrapper" />
+
+    <RelativeLayout
+        android:id="@+id/rlayout"
+        android:layout_width="362dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/seekBar"
+        android:layout_alignStart="@id/seekBar"
+        android:layout_alignEnd="@id/seekBar"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btn_rwd"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_fast_rewind_black_24dp"
+            android:clickable="true" />
+
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignTop="@+id/btn_rwd"
+            android:layout_toEndOf="@+id/btn_rwd"
+            android:layout_toRightOf="@+id/btn_rwd"
+            android:background="@drawable/ic_play_arrow_black_24dp"
+            android:clickable="true" />
+
+        <Button
+            android:id="@+id/btn_ff"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignTop="@+id/btn_play"
+            android:layout_toEndOf="@+id/btn_play"
+            android:layout_toRightOf="@+id/btn_play"
+            android:background="@drawable/ic_fast_forward_black_24dp"
+            android:clickable="true" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/dismiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlayout"
+        android:layout_centerHorizontal="true"
+        android:text="Dismiss" />
+
+</RelativeLayout>

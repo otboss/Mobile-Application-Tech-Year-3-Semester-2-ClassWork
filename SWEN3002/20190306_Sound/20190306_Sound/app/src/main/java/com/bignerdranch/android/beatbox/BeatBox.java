@@ -6,6 +6,7 @@ import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.util.Log;
+import android.widget.SeekBar;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class BeatBox {
 
     private static final String SOUNDS_FOLDER = "sample_sounds";
     private static final int MAX_SOUNDS = 5;
+    public static float SOUND_RATE = 1.0f;
 
     private AssetManager mAssets;
     private List<Sound> mSounds = new ArrayList<>();
@@ -35,7 +37,7 @@ public class BeatBox {
         if (soundId == null) {
             return;
         }
-        mSoundPool.play(soundId, 1.0f, 1.0f, 1, 0, 1.0f);
+        mSoundPool.play(soundId, 1.0f, 1.0f, 1, 0, SOUND_RATE);
     }
 
     public void release() {
@@ -64,6 +66,16 @@ public class BeatBox {
         }
     }
 
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        if ( fromUser ) {
+            // 0-based counting for progress
+            SOUND_RATE = (float)(1.0f +( (float)( progress - 5 )/10));
+            Log.d("BeatBox", "Got progress change of: " + progress + ", changed rate to: " + SOUND_RATE);
+        } else {
+            Log.d("BeatBox", "Got progress change of: " + progress + " but not from user");
+        }
+
+    }
     private void load(Sound sound) throws IOException {
         AssetFileDescriptor assetFd = mAssets.openFd(sound.getAssetPath());
         int soundId = mSoundPool.load(assetFd, 1);

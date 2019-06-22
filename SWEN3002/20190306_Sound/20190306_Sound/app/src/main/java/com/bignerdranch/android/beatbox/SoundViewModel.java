@@ -3,6 +3,7 @@ package com.bignerdranch.android.beatbox;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.util.Log;
+import android.widget.SeekBar;
 
 public class SoundViewModel extends BaseObservable {
     private Sound mSound;
